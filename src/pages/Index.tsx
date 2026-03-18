@@ -3,32 +3,38 @@ import Layout from "@/components/Layout";
 import SectionTitle from "@/components/SectionTitle";
 import DotNetworkIcon from "@/components/DotNetworkIcon";
 import heroImg from "@/assets/hero-network.jpg";
-import { Network, Cable, ShieldCheck, Wrench, Wifi, ArrowRight, Quote } from "lucide-react";
+import ctaImg from "@/assets/cta-audit.jpg";
+import serviceNetwork from "@/assets/service-network.jpg";
+import serviceCabling from "@/assets/service-cabling.jpg";
+import serviceSecurity from "@/assets/service-security.jpg";
+import serviceMaintenance from "@/assets/service-maintenance.jpg";
+import serviceTelecom from "@/assets/service-telecom.jpg";
+import { ArrowRight, Quote } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const services = [
   {
-    icon: Network,
+    image: serviceNetwork,
     title: "Installation & Configuration Réseau",
     desc: "Conception et déploiement de réseaux performants adaptés à vos besoins professionnels.",
   },
   {
-    icon: Cable,
+    image: serviceCabling,
     title: "Câblage & Infrastructure",
     desc: "Installation de câblage structuré cuivre et fibre optique pour une connectivité fiable.",
   },
   {
-    icon: ShieldCheck,
+    image: serviceSecurity,
     title: "Sécurité Électronique",
     desc: "Systèmes de vidéosurveillance, contrôle d'accès et alarmes pour protéger vos locaux.",
   },
   {
-    icon: Wrench,
+    image: serviceMaintenance,
     title: "Maintenance Informatique & Support",
     desc: "Support technique réactif et maintenance préventive pour assurer la continuité de vos opérations.",
   },
   {
-    icon: Wifi,
+    image: serviceTelecom,
     title: "Télécommunications & Réseaux Sans Fil",
     desc: "Solutions Wi-Fi professionnelles et systèmes de télécommunication sur mesure.",
   },
@@ -39,16 +45,19 @@ const testimonials = [
     name: "Marie Dupont",
     company: "TechStart SAS",
     text: "OptiNet a transformé notre infrastructure réseau. Leur équipe est réactive, professionnelle et toujours à l'écoute de nos besoins.",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
   },
   {
     name: "Jean-Pierre Martin",
     company: "Cabinet Martin & Associés",
     text: "Grâce à OptiNet, notre système de sécurité est enfin à la hauteur. Installation impeccable et suivi exemplaire.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   },
   {
     name: "Sophie Laurent",
     company: "Hôtel Le Rivage",
     text: "Le Wi-Fi de notre établissement fonctionne parfaitement depuis l'intervention d'OptiNet. Nos clients sont ravis !",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
   },
 ];
 
@@ -78,7 +87,7 @@ const Index = () => (
       </div>
     </section>
 
-    {/* Services aperçu */}
+    {/* Services avec images */}
     <section className="py-20 md:py-28 bg-muted">
       <div className="container">
         <SectionTitle
@@ -89,16 +98,22 @@ const Index = () => (
           {services.map((s, i) => (
             <div
               key={i}
-              className="bg-card rounded-lg p-6 shadow-card hover:shadow-elevated transition-shadow duration-300 group"
+              className="bg-card rounded-lg overflow-hidden shadow-card hover:shadow-elevated transition-shadow duration-300 group"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 rounded-lg bg-gradient-primary flex items-center justify-center">
-                  <s.icon className="text-primary-foreground" size={22} />
-                </div>
-                <DotNetworkIcon className="w-6 h-6" />
+              <div className="aspect-video overflow-hidden">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
               </div>
-              <h3 className="font-semibold text-lg mb-2 text-foreground">{s.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              <div className="p-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <h3 className="font-semibold text-lg text-foreground">{s.title}</h3>
+                  <DotNetworkIcon className="w-5 h-5 flex-shrink-0" />
+                </div>
+                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -118,9 +133,11 @@ const Index = () => (
               <Quote className="text-secondary mb-4" size={28} />
               <p className="text-muted-foreground text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-sm">
-                  {t.name[0]}
-                </div>
+                <img
+                  src={t.avatar}
+                  alt={t.name}
+                  className="w-12 h-12 rounded-full object-cover"
+                />
                 <div>
                   <p className="font-semibold text-sm text-foreground">{t.name}</p>
                   <p className="text-xs text-muted-foreground">{t.company}</p>
@@ -132,21 +149,32 @@ const Index = () => (
       </div>
     </section>
 
-    {/* CTA */}
-    <section className="py-20 md:py-28 bg-gradient-primary text-primary-foreground">
-      <div className="container text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Contactez-nous pour un audit gratuit
-        </h2>
-        <p className="opacity-80 mb-8 max-w-xl mx-auto">
-          Notre équipe d'experts analyse votre infrastructure et vous propose des solutions sur mesure.
-        </p>
-        <Link to="/contact">
-          <Button size="lg" variant="secondary" className="text-base font-semibold px-8 py-6">
-            Contactez-nous
-            <ArrowRight className="ml-2" size={18} />
-          </Button>
-        </Link>
+    {/* CTA avec image */}
+    <section className="relative overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="bg-gradient-primary text-primary-foreground flex items-center py-20 md:py-28">
+          <div className="container lg:pl-16 lg:pr-8 text-center lg:text-left">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Contactez-nous pour un audit gratuit
+            </h2>
+            <p className="opacity-80 mb-8 max-w-xl">
+              Notre équipe d'experts analyse votre infrastructure et vous propose des solutions sur mesure.
+            </p>
+            <Link to="/contact">
+              <Button size="lg" variant="secondary" className="text-base font-semibold px-8 py-6">
+                Contactez-nous
+                <ArrowRight className="ml-2" size={18} />
+              </Button>
+            </Link>
+          </div>
+        </div>
+        <div className="hidden lg:block">
+          <img
+            src={ctaImg}
+            alt="Consultation professionnelle"
+            className="w-full h-full object-cover"
+          />
+        </div>
       </div>
     </section>
   </Layout>

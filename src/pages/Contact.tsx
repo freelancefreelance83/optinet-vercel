@@ -34,7 +34,7 @@ const ContactPage = () => {
             subtitle="Nous sommes à votre écoute. Remplissez le formulaire et nous vous répondrons rapidement."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
               <div>
@@ -82,7 +82,7 @@ const ContactPage = () => {
               </Button>
             </form>
 
-            {/* Info */}
+            {/* Info + Map */}
             <div className="space-y-8">
               <div>
                 <h3 className="text-lg font-bold text-foreground mb-4">Nos coordonnées</h3>
@@ -101,11 +101,33 @@ const ContactPage = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Google Maps */}
+              <div className="rounded-xl overflow-hidden shadow-card border border-border">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.3419584!3d48.8583736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1700000000000"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="Localisation OptiNet"
+                />
+              </div>
+
               <div className="bg-muted rounded-lg p-6">
                 <h4 className="font-semibold text-foreground mb-2">Audit gratuit</h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
                   Contactez-nous pour bénéficier d'un audit gratuit de votre infrastructure réseau.
                   Nos experts analyseront vos besoins et vous proposeront des solutions adaptées.
+                </p>
+              </div>
+
+              {/* Airtable placeholder */}
+              <div className="bg-muted rounded-lg p-4 text-center">
+                <p className="text-muted-foreground text-xs">
+                  📋 Formulaire connectable à Airtable pour le tableau Contacts.
                 </p>
               </div>
             </div>
