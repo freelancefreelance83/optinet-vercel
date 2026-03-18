@@ -1,0 +1,75 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import logo from "@/assets/on-monogram.png";
+
+const navLinks = [
+  { to: "/", label: "Accueil" },
+  { to: "/services", label: "Services" },
+  { to: "/blog", label: "Blog" },
+  { to: "/temoignages", label: "Témoignages" },
+  { to: "/a-propos", label: "À propos" },
+  { to: "/contact", label: "Contact" },
+];
+
+const Header = () => {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+      <div className="container flex items-center justify-between h-16 md:h-20">
+        <Link to="/" className="flex items-center gap-2">
+          <img src={logo} alt="OptiNet" className="h-10 w-10 md:h-12 md:w-12" />
+          <span className="text-xl font-bold text-foreground tracking-tight">OptiNet</span>
+        </Link>
+
+        {/* Desktop nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={`text-sm font-medium transition-colors hover:text-secondary ${
+                location.pathname === link.to ? "text-secondary" : "text-muted-foreground"
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden text-foreground p-2"
+          aria-label="Menu"
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile nav */}
+      {open && (
+        <nav className="md:hidden bg-background border-b border-border animate-fade-in">
+          <div className="container py-4 flex flex-col gap-3">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setOpen(false)}
+                className={`text-sm font-medium py-2 transition-colors hover:text-secondary ${
+                  location.pathname === link.to ? "text-secondary" : "text-muted-foreground"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+      )}
+    </header>
+  );
+};
+
+export default Header;
