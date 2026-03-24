@@ -77,9 +77,9 @@ const ContactPage = () => {
                 <h3 className="text-lg font-bold text-foreground mb-4">Nos coordonnées</h3>
                 <div className="space-y-4">
                   {[
-                    { icon: MapPin, text: "123 Rue de la Technologie, 75001 Paris" },
-                    { icon: Phone, text: "+33 1 23 45 67 89" },
-                    { icon: Mail, text: "contact@optinet.fr" },
+                    { icon: MapPin, text: "Maristes 2, Dakar, Sénégal" },
+                    { icon: Phone, text: "+221 76 945 75 49" },
+                    { icon: Mail, text: "freelancefreelance83@gmail.com" },
                   ].map((item, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
