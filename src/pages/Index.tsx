@@ -100,34 +100,6 @@ const Index = () => (
       </div>
     </section>
 
-    {/* Témoignages */}
-    <section className="py-20 md:py-28">
-      <div className="container">
-        <SectionTitle
-          title="Témoignages"
-          subtitle="Ce que nos clients disent de nous."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div key={i} className="bg-card rounded-lg p-6 shadow-card border border-border">
-              <Quote className="text-secondary mb-4" size={28} />
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
-              <div className="flex items-center gap-3">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-sm text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.company}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
     {/* CTA avec image */}
     <section className="relative overflow-hidden">

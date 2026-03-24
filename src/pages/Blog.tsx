@@ -72,7 +72,7 @@ const BlogPage = () => {
                         </div>
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 ))}
           </div>
         </div>
