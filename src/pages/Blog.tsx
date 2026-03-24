@@ -39,7 +39,8 @@ const BlogPage = () => {
                   <Skeleton key={i} className="h-48 w-full rounded-xl" />
                 ))
               : articles?.map((a) => (
-                  <article
+                  <Link
+                    to={`/blog/${a.id}`}
                     key={a.id}
                     className="bg-card rounded-xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-shadow duration-300 group cursor-pointer"
                   >
