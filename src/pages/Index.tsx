@@ -9,7 +9,7 @@ import serviceCabling from "@/assets/service-cabling.jpg";
 import serviceSecurity from "@/assets/service-security.jpg";
 import serviceMaintenance from "@/assets/service-maintenance.jpg";
 import serviceTelecom from "@/assets/service-telecom.jpg";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const services = [

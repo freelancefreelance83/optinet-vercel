@@ -27,6 +27,17 @@ const ContactPage = () => {
       phone: form.phone.trim() || null,
       message: form.message.trim(),
     });
+    if (!error) {
+      // Send notification email
+      await supabase.functions.invoke("send-contact-notification", {
+        body: {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim() || null,
+          message: form.message.trim(),
+        },
+      });
+    }
     setSubmitting(false);
     if (error) {
       toast({ title: "Erreur", description: "Une erreur est survenue. Veuillez réessayer.", variant: "destructive" });
