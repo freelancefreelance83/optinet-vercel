@@ -93,9 +93,9 @@ const ContactPage = () => {
 
               <div className="rounded-xl overflow-hidden shadow-card border border-border">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937595!2d2.3419584!3d48.8583736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1700000000000"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.5!2d-17.4677!3d14.7167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172e0804eb90b%3A0x9b5fb2e9b2e9b2e9!2sMaristes%202%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1700000000000"
                   width="100%" height="250" style={{ border: 0 }} allowFullScreen loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade" title="Localisation OptiNet"
+                  referrerPolicy="no-referrer-when-downgrade" title="Localisation OptiNet - Dakar"
                 />
               </div>
 
