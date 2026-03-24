@@ -22,7 +22,7 @@ const AboutPage = () =>
     <section className="py-20 md:py-28">
       <div className="container">
         <div className="flex justify-center mb-8">
-          <img src={logo} alt="OptiNet" className="h-20 w-20" />
+          <img alt="OptiNet" className="h-20 w-20" src="/lovable-uploads/69dc755a-fc84-4fe7-8b00-1556469bd252.png" />
         </div>
         <SectionTitle
         title="Qui sommes-nous"
@@ -44,7 +44,7 @@ const AboutPage = () =>
             </p>
           </div>
           <div className="rounded-xl overflow-hidden shadow-elevated">
-            <img alt="L'équipe OptiNet" className="w-full h-full object-cover" src="/lovable-uploads/d52a6f89-6d53-4422-b843-2c011055815f.png" />
+            <img alt="L'équipe OptiNet" className="w-full h-full object-cover" src="/lovable-uploads/4403403f-0f8e-4795-a56c-cadcb773c439.png" />
           </div>
         </div>
 
