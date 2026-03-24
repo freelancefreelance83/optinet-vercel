@@ -40,26 +40,6 @@ const services = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "Marie Dupont",
-    company: "TechStart SAS",
-    text: "OptiNet a transformé notre infrastructure réseau. Leur équipe est réactive, professionnelle et toujours à l'écoute de nos besoins.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    name: "Jean-Pierre Martin",
-    company: "Cabinet Martin & Associés",
-    text: "Grâce à OptiNet, notre système de sécurité est enfin à la hauteur. Installation impeccable et suivi exemplaire.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    name: "Sophie Laurent",
-    company: "Hôtel Le Rivage",
-    text: "Le Wi-Fi de notre établissement fonctionne parfaitement depuis l'intervention d'OptiNet. Nos clients sont ravis !",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-  },
-];
 
 const Index = () => (
   <Layout>
