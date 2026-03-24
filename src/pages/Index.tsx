@@ -9,7 +9,7 @@ import serviceCabling from "@/assets/service-cabling.jpg";
 import serviceSecurity from "@/assets/service-security.jpg";
 import serviceMaintenance from "@/assets/service-maintenance.jpg";
 import serviceTelecom from "@/assets/service-telecom.jpg";
-import { ArrowRight, Quote } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const services = [
@@ -40,26 +40,6 @@ const services = [
   },
 ];
 
-const testimonials = [
-  {
-    name: "Marie Dupont",
-    company: "TechStart SAS",
-    text: "OptiNet a transformé notre infrastructure réseau. Leur équipe est réactive, professionnelle et toujours à l'écoute de nos besoins.",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    name: "Jean-Pierre Martin",
-    company: "Cabinet Martin & Associés",
-    text: "Grâce à OptiNet, notre système de sécurité est enfin à la hauteur. Installation impeccable et suivi exemplaire.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    name: "Sophie Laurent",
-    company: "Hôtel Le Rivage",
-    text: "Le Wi-Fi de notre établissement fonctionne parfaitement depuis l'intervention d'OptiNet. Nos clients sont ravis !",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-  },
-];
 
 const Index = () => (
   <Layout>
@@ -120,34 +100,6 @@ const Index = () => (
       </div>
     </section>
 
-    {/* Témoignages */}
-    <section className="py-20 md:py-28">
-      <div className="container">
-        <SectionTitle
-          title="Témoignages"
-          subtitle="Ce que nos clients disent de nous."
-        />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div key={i} className="bg-card rounded-lg p-6 shadow-card border border-border">
-              <Quote className="text-secondary mb-4" size={28} />
-              <p className="text-muted-foreground text-sm leading-relaxed mb-6 italic">"{t.text}"</p>
-              <div className="flex items-center gap-3">
-                <img
-                  src={t.avatar}
-                  alt={t.name}
-                  className="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-sm text-foreground">{t.name}</p>
-                  <p className="text-xs text-muted-foreground">{t.company}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
 
     {/* CTA avec image */}
     <section className="relative overflow-hidden">

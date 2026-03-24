@@ -17,6 +17,7 @@ export type Database = {
       blog_articles: {
         Row: {
           author: string
+          content: string
           created_at: string
           excerpt: string
           id: string
@@ -26,6 +27,7 @@ export type Database = {
         }
         Insert: {
           author?: string
+          content?: string
           created_at?: string
           excerpt: string
           id?: string
@@ -35,6 +37,7 @@ export type Database = {
         }
         Update: {
           author?: string
+          content?: string
           created_at?: string
           excerpt?: string
           id?: string

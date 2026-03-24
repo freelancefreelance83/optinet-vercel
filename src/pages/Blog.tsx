@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import SectionTitle from "@/components/SectionTitle";
 import DotNetworkIcon from "@/components/DotNetworkIcon";
@@ -38,7 +39,8 @@ const BlogPage = () => {
                   <Skeleton key={i} className="h-48 w-full rounded-xl" />
                 ))
               : articles?.map((a) => (
-                  <article
+                  <Link
+                    to={`/blog/${a.id}`}
                     key={a.id}
                     className="bg-card rounded-xl overflow-hidden border border-border shadow-card hover:shadow-elevated transition-shadow duration-300 group cursor-pointer"
                   >
@@ -70,7 +72,7 @@ const BlogPage = () => {
                         </div>
                       </div>
                     </div>
-                  </article>
+                  </Link>
                 ))}
           </div>
         </div>
