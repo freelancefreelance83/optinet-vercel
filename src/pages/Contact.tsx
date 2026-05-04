@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import SectionTitle from "@/components/SectionTitle";
-import DotNetworkIcon from "@/components/DotNetworkIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -49,18 +50,58 @@ const ContactPage = () => {
 
   return (
     <Layout>
-      <section className="py-20 md:py-28 relative">
-        <div className="absolute bottom-10 left-10 opacity-5">
-          <DotNetworkIcon className="w-48 h-48" />
+      <SEO
+        title="Contact"
+        description="Contactez OptiNet pour un audit gratuit de votre infrastructure réseau. Maristes 2, Dakar, Sénégal. Tél: +221 76 945 75 49."
+        path="/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "OptiNet",
+          telephone: "+221769457549",
+          email: "freelancefreelance83@gmail.com",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Maristes 2",
+            addressLocality: "Dakar",
+            addressCountry: "SN",
+          },
+        }}
+      />
+
+      {/* Hero */}
+      <section className="bg-gradient-primary text-primary-foreground py-16 md:py-20">
+        <div className="container text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-5xl font-extrabold mb-4"
+          >
+            Contactez-nous
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="opacity-80 max-w-2xl mx-auto text-lg"
+          >
+            Nous sommes à votre écoute. Remplissez le formulaire et nous vous répondrons rapidement.
+          </motion.p>
         </div>
+      </section>
+
+      <section className="py-20 md:py-28 relative">
         <div className="container relative z-10">
-          <SectionTitle
-            title="Contactez-nous"
-            subtitle="Nous sommes à votre écoute. Remplissez le formulaire et nous vous répondrons rapidement."
-          />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <motion.form
+              onSubmit={handleSubmit}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              className="space-y-5"
+            >
               <div>
                 <label className="text-sm font-medium text-foreground mb-1.5 block">Nom *</label>
                 <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Votre nom" maxLength={100} />
@@ -81,9 +122,14 @@ const ContactPage = () => {
                 {submitting ? "Envoi en cours..." : "Envoyer"}
                 <Send className="ml-2" size={18} />
               </Button>
-            </form>
+            </motion.form>
 
-            <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="space-y-8"
+            >
               <div>
                 <h3 className="text-lg font-bold text-foreground mb-4">Nos coordonnées</h3>
                 <div className="space-y-4">
@@ -117,7 +163,7 @@ const ContactPage = () => {
                   Nos experts analyseront vos besoins et vous proposeront des solutions adaptées.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

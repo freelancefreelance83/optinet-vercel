@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
+import SEO from "@/components/SEO";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -26,6 +28,29 @@ const BlogArticlePage = () => {
 
   return (
     <Layout>
+      {article && (
+        <SEO
+          title={article.title}
+          description={article.excerpt}
+          path={`/blog/${id}`}
+          image={article.image_url || undefined}
+          type="article"
+          jsonLd={{
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.excerpt,
+            author: { "@type": "Person", name: article.author },
+            datePublished: article.published_at,
+            image: article.image_url || undefined,
+            publisher: {
+              "@type": "Organization",
+              name: "OptiNet",
+            },
+          }}
+        />
+      )}
+
       <section className="py-20 md:py-28">
         <div className="container max-w-3xl">
           <Link
@@ -45,8 +70,12 @@ const BlogArticlePage = () => {
               <Skeleton className="h-4 w-2/3" />
             </div>
           ) : article ? (
-            <article>
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+            <motion.article
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4 leading-tight">
                 {article.title}
               </h1>
               <div className="flex items-center gap-4 text-sm text-muted-foreground mb-8">
@@ -64,13 +93,26 @@ const BlogArticlePage = () => {
                 <img
                   src={article.image_url}
                   alt={article.title}
-                  className="w-full rounded-xl mb-8 object-cover max-h-[400px]"
+                  className="w-full rounded-xl mb-8 object-cover max-h-[450px]"
+                  width={800}
+                  height={450}
                 />
               )}
-              <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed whitespace-pre-line">
+              <div className="prose prose-lg max-w-none text-muted-foreground leading-relaxed whitespace-pre-line prose-headings:text-foreground prose-strong:text-foreground">
                 {(article as any).content || article.excerpt}
               </div>
-            </article>
+
+              {/* Back link bottom */}
+              <div className="mt-12 pt-8 border-t border-border">
+                <Link
+                  to="/blog"
+                  className="inline-flex items-center gap-2 text-sm text-secondary hover:underline font-medium"
+                >
+                  <ArrowLeft size={16} />
+                  Voir tous les articles
+                </Link>
+              </div>
+            </motion.article>
           ) : (
             <p className="text-muted-foreground">Article introuvable.</p>
           )}
