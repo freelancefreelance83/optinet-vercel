@@ -12,10 +12,6 @@ const values = [
 { icon: Heart, title: "Valeurs", text: "Excellence technique, réactivité, transparence et engagement envers la satisfaction client guident chacune de nos interventions." }];
 
 
-const stats = [
-{ value: "5 ans", label: "D'expérience" },
-{ value: "18", label: "Projets réalisés" }
-];
 
 
 const AboutPage = () =>
