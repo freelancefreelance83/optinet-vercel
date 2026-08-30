@@ -102,26 +102,6 @@ const AboutPage = () =>
             </motion.div>
         )}
         </div>
-
-        {/* Stats */}
-        <div className="max-w-4xl mx-auto">
-          <SectionTitle title="Notre Expérience" subtitle="Des résultats concrets à travers le Sénégal." />
-          <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {stats.map((s, i) =>
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="text-center bg-card rounded-xl p-8 shadow-card border border-border"
-          >
-                <p className="text-4xl md:text-5xl font-extrabold text-primary mb-2">{s.value}</p>
-                <p className="text-muted-foreground font-medium">{s.label}</p>
-              </motion.div>
-          )}
-          </div>
-        </div>
       </div>
     </section>
   </Layout>;
