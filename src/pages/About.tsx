@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import SectionTitle from "@/components/SectionTitle";
-import teamPhoto from "@/assets/team-photo.jpg";
 import aboutOffice from "@/assets/about-office.jpg";
 import { Target, Eye, Heart } from "lucide-react";
 
@@ -12,11 +11,10 @@ const values = [
 { icon: Heart, title: "Valeurs", text: "Excellence technique, réactivité, transparence et engagement envers la satisfaction client guident chacune de nos interventions." }];
 
 
-const teamMembers = [
-{ name: "Karim Bensalem", role: "Fondateur & Directeur Technique", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face" },
-{ name: "Laura Fontaine", role: "Responsable Projets Réseau", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face" },
-{ name: "Thomas Moreau", role: "Ingénieur Sécurité", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face" },
-{ name: "Amina El Fassi", role: "Technicienne Câblage & Fibre", avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face" }];
+const stats = [
+{ value: "5 ans", label: "D'expérience" },
+{ value: "18", label: "Projets réalisés" }
+];
 
 
 const AboutPage = () =>
