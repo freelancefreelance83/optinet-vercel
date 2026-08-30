@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import SectionTitle from "@/components/SectionTitle";
+import teamPhoto from "@/assets/team-photo.jpg";
 import aboutOffice from "@/assets/about-office.jpg";
 import { Target, Eye, Heart } from "lucide-react";
 
