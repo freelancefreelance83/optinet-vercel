@@ -12,11 +12,10 @@ const values = [
 { icon: Heart, title: "Valeurs", text: "Excellence technique, réactivité, transparence et engagement envers la satisfaction client guident chacune de nos interventions." }];
 
 
-const teamMembers = [
-{ name: "Karim Bensalem", role: "Fondateur & Directeur Technique", avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=300&fit=crop&crop=face" },
-{ name: "Laura Fontaine", role: "Responsable Projets Réseau", avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&crop=face" },
-{ name: "Thomas Moreau", role: "Ingénieur Sécurité", avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300&h=300&fit=crop&crop=face" },
-{ name: "Amina El Fassi", role: "Technicienne Câblage & Fibre", avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=300&fit=crop&crop=face" }];
+const stats = [
+{ value: "5 ans", label: "D'expérience" },
+{ value: "18", label: "Projets réalisés" }
+];
 
 
 const AboutPage = () =>
@@ -108,24 +107,21 @@ const AboutPage = () =>
         )}
         </div>
 
-        {/* Équipe */}
+        {/* Stats */}
         <div className="max-w-4xl mx-auto">
-          <SectionTitle title="Notre Équipe" subtitle="Des professionnels passionnés au service de votre réussite." />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {teamMembers.map((m, i) =>
+          <SectionTitle title="Notre Expérience" subtitle="Des résultats concrets à travers le Sénégal." />
+          <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {stats.map((s, i) =>
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="text-center group"
+            className="text-center bg-card rounded-xl p-8 shadow-card border border-border"
           >
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 shadow-card group-hover:shadow-elevated transition-shadow border-2 border-border">
-                  <img src={m.avatar} alt={m.name} className="w-full h-full object-cover" loading="lazy" width={300} height={300} />
-                </div>
-                <p className="font-semibold text-foreground text-sm">{m.name}</p>
-                <p className="text-muted-foreground text-xs mt-1">{m.role}</p>
+                <p className="text-4xl md:text-5xl font-extrabold text-primary mb-2">{s.value}</p>
+                <p className="text-muted-foreground font-medium">{s.label}</p>
               </motion.div>
           )}
           </div>
