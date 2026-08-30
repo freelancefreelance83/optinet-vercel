@@ -106,24 +106,21 @@ const AboutPage = () =>
         )}
         </div>
 
-        {/* Équipe */}
+        {/* Stats */}
         <div className="max-w-4xl mx-auto">
-          <SectionTitle title="Notre Équipe" subtitle="Des professionnels passionnés au service de votre réussite." />
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {teamMembers.map((m, i) =>
+          <SectionTitle title="Notre Expérience" subtitle="Des résultats concrets à travers le Sénégal." />
+          <div className="grid grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {stats.map((s, i) =>
           <motion.div
             key={i}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: i * 0.1 }}
-            className="text-center group"
+            className="text-center bg-card rounded-xl p-8 shadow-card border border-border"
           >
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 shadow-card group-hover:shadow-elevated transition-shadow border-2 border-border">
-                  <img src={m.avatar} alt={m.name} className="w-full h-full object-cover" loading="lazy" width={300} height={300} />
-                </div>
-                <p className="font-semibold text-foreground text-sm">{m.name}</p>
-                <p className="text-muted-foreground text-xs mt-1">{m.role}</p>
+                <p className="text-4xl md:text-5xl font-extrabold text-primary mb-2">{s.value}</p>
+                <p className="text-muted-foreground font-medium">{s.label}</p>
               </motion.div>
           )}
           </div>
