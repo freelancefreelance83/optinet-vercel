@@ -9,16 +9,18 @@ import { Textarea } from "@/components/ui/textarea";
 import { Send, MapPin, Phone, Mail } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ContactPage = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      toast({ title: "Erreur", description: "Veuillez remplir tous les champs obligatoires.", variant: "destructive" });
+      toast({ title: t("contact.error"), description: t("contact.error.required"), variant: "destructive" });
       return;
     }
     setSubmitting(true);
@@ -41,10 +43,10 @@ const ContactPage = () => {
     }
     setSubmitting(false);
     if (error) {
-      toast({ title: "Erreur", description: "Une erreur est survenue. Veuillez réessayer.", variant: "destructive" });
+      toast({ title: t("contact.error"), description: t("contact.error.generic"), variant: "destructive" });
       return;
     }
-    toast({ title: "Message envoyé !", description: "Nous vous répondrons dans les plus brefs délais." });
+    toast({ title: t("contact.success"), description: t("contact.success.desc") });
     setForm({ name: "", email: "", phone: "", message: "" });
   };
 
@@ -78,7 +80,7 @@ const ContactPage = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-extrabold mb-4"
           >
-            Contactez-nous
+            {t("contact.hero.title")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -86,7 +88,7 @@ const ContactPage = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="opacity-80 max-w-2xl mx-auto text-lg"
           >
-            Nous sommes à votre écoute. Remplissez le formulaire et nous vous répondrons rapidement.
+            {t("contact.hero.subtitle")}
           </motion.p>
         </div>
       </section>
@@ -103,23 +105,23 @@ const ContactPage = () => {
               className="space-y-5"
             >
               <div>
-                <label className="text-sm font-medium text-foreground mb-1.5 block">Nom *</label>
-                <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="Votre nom" maxLength={100} />
+                <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.name")}</label>
+                <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder={t("contact.name.ph")} maxLength={100} />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground mb-1.5 block">Email *</label>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.email")}</label>
                 <Input type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="votre@email.com" maxLength={255} />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground mb-1.5 block">Téléphone</label>
+                <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.phone")}</label>
                 <Input type="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} placeholder="+33 6 12 34 56 78" maxLength={20} />
               </div>
               <div>
-                <label className="text-sm font-medium text-foreground mb-1.5 block">Message *</label>
-                <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder="Décrivez votre besoin..." rows={5} maxLength={1000} />
+                <label className="text-sm font-medium text-foreground mb-1.5 block">{t("contact.message")}</label>
+                <Textarea value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder={t("contact.message.ph")} rows={5} maxLength={1000} />
               </div>
               <Button type="submit" disabled={submitting} className="w-full bg-gradient-primary text-primary-foreground py-6 text-base font-semibold">
-                {submitting ? "Envoi en cours..." : "Envoyer"}
+                {submitting ? t("contact.sending") : t("contact.send")}
                 <Send className="ml-2" size={18} />
               </Button>
             </motion.form>
@@ -131,7 +133,7 @@ const ContactPage = () => {
               className="space-y-8"
             >
               <div>
-                <h3 className="text-lg font-bold text-foreground mb-4">Nos coordonnées</h3>
+                <h3 className="text-lg font-bold text-foreground mb-4">{t("contact.details")}</h3>
                 <div className="space-y-4">
                   {[
                     { icon: MapPin, text: "Maristes 2, Dakar, Sénégal" },
@@ -157,11 +159,8 @@ const ContactPage = () => {
               </div>
 
               <div className="bg-muted rounded-lg p-6">
-                <h4 className="font-semibold text-foreground mb-2">Audit gratuit</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Contactez-nous pour bénéficier d'un audit gratuit de votre infrastructure réseau.
-                  Nos experts analyseront vos besoins et vous proposeront des solutions adaptées.
-                </p>
+                <h4 className="font-semibold text-foreground mb-2">{t("contact.audit.title")}</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">{t("contact.audit.desc")}</p>
               </div>
             </motion.div>
           </div>
