@@ -12,46 +12,22 @@ import serviceMaintenance from "@/assets/service-maintenance.jpg";
 import serviceTelecom from "@/assets/service-telecom.jpg";
 import { ArrowRight, Network, Cable, ShieldCheck, Wrench, Wifi, Phone, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const services = [
-  {
-    image: serviceNetwork,
-    title: "Installation & Configuration Réseau",
-    desc: "Conception et déploiement de réseaux performants adaptés à vos besoins professionnels.",
-    icon: Network,
-  },
-  {
-    image: serviceCabling,
-    title: "Câblage & Infrastructure",
-    desc: "Installation de câblage structuré cuivre et fibre optique pour une connectivité fiable.",
-    icon: Cable,
-  },
-  {
-    image: serviceSecurity,
-    title: "Sécurité Électronique",
-    desc: "Systèmes de vidéosurveillance, contrôle d'accès et alarmes pour protéger vos locaux.",
-    icon: ShieldCheck,
-  },
-  {
-    image: serviceMaintenance,
-    title: "Maintenance Informatique & Support",
-    desc: "Support technique réactif et maintenance préventive pour assurer la continuité de vos opérations.",
-    icon: Wrench,
-  },
-  {
-    image: serviceTelecom,
-    title: "Télécommunications & Réseaux Sans Fil",
-    desc: "Solutions Wi-Fi professionnelles et systèmes de télécommunication sur mesure.",
-    icon: Wifi,
-  },
-];
+  { image: serviceNetwork, key: "network", icon: Network },
+  { image: serviceCabling, key: "cabling", icon: Cable },
+  { image: serviceSecurity, key: "security", icon: ShieldCheck },
+  { image: serviceMaintenance, key: "maintenance", icon: Wrench },
+  { image: serviceTelecom, key: "telecom", icon: Wifi },
+] as const;
 
 const stats = [
-  { value: "18", label: "Projets réalisés" },
-  { value: "98%", label: "Clients satisfaits" },
-  { value: "24/7", label: "Support technique" },
-  { value: "5", label: "Années d'expérience" },
-];
+  { value: "18", key: "home.stats.projects" },
+  { value: "98%", key: "home.stats.satisfied" },
+  { value: "24/7", key: "home.stats.support" },
+  { value: "5", key: "home.stats.years" },
+] as const;
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -62,7 +38,9 @@ const fadeUp = {
   }),
 };
 
-const Index = () => (
+const Index = () => {
+  const { t } = useLanguage();
+  return (
   <Layout>
     <SEO
       title="Accueil"
@@ -111,7 +89,7 @@ const Index = () => (
           transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
           className="text-xl md:text-2xl font-light mb-8 opacity-90"
         >
-          Connecter. Sécuriser. Optimiser.
+          {t("home.tagline")}
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -121,14 +99,14 @@ const Index = () => (
         >
           <Link to="/services">
             <Button size="lg" variant="secondary" className="text-base font-semibold px-8 py-6">
-              Découvrez nos services
+              {t("home.cta.services")}
               <ArrowRight className="ml-2" size={18} />
             </Button>
           </Link>
           <Link to="/contact">
             <Button size="lg" variant="outline" className="text-base font-semibold px-8 py-6 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
               <Phone className="mr-2" size={18} />
-              Nous contacter
+              {t("home.cta.contact")}
             </Button>
           </Link>
         </motion.div>
@@ -150,7 +128,7 @@ const Index = () => (
               className="text-center"
             >
               <p className="text-3xl md:text-4xl font-extrabold text-secondary">{stat.value}</p>
-              <p className="text-primary-foreground/80 text-sm mt-1">{stat.label}</p>
+              <p className="text-primary-foreground/80 text-sm mt-1">{t(stat.key)}</p>
             </motion.div>
           ))}
         </div>
@@ -161,8 +139,8 @@ const Index = () => (
     <section className="py-20 md:py-28 bg-muted">
       <div className="container">
         <SectionTitle
-          title="Nos Services"
-          subtitle="Des solutions complètes pour votre infrastructure réseau et informatique."
+          title={t("home.services.title")}
+          subtitle={t("home.services.subtitle")}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => (
@@ -178,7 +156,7 @@ const Index = () => (
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src={s.image}
-                  alt={s.title}
+                  alt={t(`svc.${s.key}.title` as never)}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                   width={800}
@@ -190,9 +168,9 @@ const Index = () => (
                   <div className="w-9 h-9 rounded-lg bg-secondary/10 flex items-center justify-center flex-shrink-0">
                     <s.icon className="text-secondary" size={18} />
                   </div>
-                  <h3 className="font-semibold text-lg text-foreground">{s.title}</h3>
+                  <h3 className="font-semibold text-lg text-foreground">{t(`svc.${s.key}.title` as never)}</h3>
                 </div>
-                <p className="text-muted-foreground text-sm leading-relaxed">{s.desc}</p>
+                <p className="text-muted-foreground text-sm leading-relaxed">{t(`svc.${s.key}.desc` as never)}</p>
               </div>
             </motion.div>
           ))}
@@ -200,7 +178,7 @@ const Index = () => (
         <div className="text-center mt-10">
           <Link to="/services">
             <Button variant="outline" size="lg" className="font-semibold">
-              Voir tous nos services
+              {t("home.services.all")}
               <ArrowRight className="ml-2" size={16} />
             </Button>
           </Link>
@@ -212,18 +190,11 @@ const Index = () => (
     <section className="py-20 md:py-28">
       <div className="container">
         <SectionTitle
-          title="Pourquoi choisir OptiNet ?"
-          subtitle="Un partenaire fiable pour toutes vos solutions technologiques."
+          title={t("home.why.title")}
+          subtitle={t("home.why.subtitle")}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          {[
-            { title: "Expertise certifiée", desc: "Nos ingénieurs sont formés et certifiés sur les technologies de pointe du marché." },
-            { title: "Réactivité 24/7", desc: "Une équipe disponible en permanence pour assurer la continuité de vos opérations." },
-            { title: "Solutions sur mesure", desc: "Chaque projet est unique. Nous adaptons nos solutions à vos besoins spécifiques." },
-            { title: "Tarifs compétitifs", desc: "Des solutions professionnelles accessibles, adaptées à tous les budgets." },
-            { title: "Accompagnement complet", desc: "De l'audit initial à la maintenance, nous vous accompagnons à chaque étape." },
-            { title: "Technologies modernes", desc: "Nous utilisons les dernières technologies pour garantir performance et sécurité." },
-          ].map((item, i) => (
+          {[1, 2, 3, 4, 5, 6].map((n, i) => (
             <motion.div
               key={i}
               initial="hidden"
@@ -235,8 +206,8 @@ const Index = () => (
             >
               <CheckCircle2 className="text-secondary flex-shrink-0 mt-1" size={20} />
               <div>
-                <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="font-semibold text-foreground mb-1">{t(`home.why.${n}.title` as never)}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{t(`home.why.${n}.desc` as never)}</p>
               </div>
             </motion.div>
           ))}
@@ -257,7 +228,7 @@ const Index = () => (
               custom={0}
               className="text-3xl md:text-4xl font-bold mb-4"
             >
-              Contactez-nous pour un audit gratuit
+              {t("home.audit.title")}
             </motion.h2>
             <motion.p
               initial="hidden"
@@ -267,11 +238,11 @@ const Index = () => (
               custom={1}
               className="opacity-80 mb-8 max-w-xl"
             >
-              Notre équipe d'experts analyse votre infrastructure et vous propose des solutions sur mesure.
+              {t("home.audit.desc")}
             </motion.p>
             <Link to="/contact">
               <Button size="lg" variant="secondary" className="text-base font-semibold px-8 py-6">
-                Contactez-nous
+                {t("home.audit.cta")}
                 <ArrowRight className="ml-2" size={18} />
               </Button>
             </Link>
@@ -290,6 +261,7 @@ const Index = () => (
       </div>
     </section>
   </Layout>
-);
+  );
+};
 
 export default Index;
