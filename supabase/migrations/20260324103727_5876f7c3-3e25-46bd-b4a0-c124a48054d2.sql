@@ -1,1 +1,0 @@
-ALTER TABLE public.blog_articles ADD COLUMN content text NOT NULL DEFAULT '';
