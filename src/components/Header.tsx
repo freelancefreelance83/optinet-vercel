@@ -1,19 +1,43 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Moon, Sun, Languages } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navLinks = [
-  { to: "/", label: "Accueil" },
-  { to: "/services", label: "Services" },
-  { to: "/blog", label: "Blog" },
-  { to: "/a-propos", label: "À propos" },
-];
-
+import { useTheme } from "@/contexts/ThemeContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const { lang, toggleLang, t } = useLanguage();
+
+  const navLinks = [
+    { to: "/", label: t("nav.home") },
+    { to: "/services", label: t("nav.services") },
+    { to: "/blog", label: t("nav.blog") },
+    { to: "/a-propos", label: t("nav.about") },
+  ];
+
+  const Toggles = ({ className = "" }: { className?: string }) => (
+    <div className={`flex items-center gap-1 ${className}`}>
+      <button
+        onClick={toggleTheme}
+        aria-label={theme === "dark" ? t("theme.light") : t("theme.dark")}
+        title={theme === "dark" ? t("theme.light") : t("theme.dark")}
+        className="p-2 rounded-md text-muted-foreground hover:text-secondary transition-colors"
+      >
+        {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+      </button>
+      <button
+        onClick={toggleLang}
+        aria-label="Language"
+        className="flex items-center gap-1 px-2 py-2 rounded-md text-muted-foreground hover:text-secondary transition-colors text-xs font-semibold uppercase"
+      >
+        <Languages size={18} />
+        {lang === "fr" ? "FR" : "EN"}
+      </button>
+    </div>
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border" role="banner">
@@ -24,7 +48,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Navigation principale">
+        <nav className="hidden md:flex items-center gap-6" role="navigation" aria-label="Navigation">
           {navLinks.map((link) => (
             <Link
               key={link.to}
@@ -36,22 +60,22 @@ const Header = () => {
               {link.label}
             </Link>
           ))}
+          <Toggles />
           <Link to="/contact">
             <Button size="sm" className="bg-gradient-primary text-primary-foreground font-semibold">
               <Phone size={14} className="mr-1.5" />
-              Contact
+              {t("nav.contact")}
             </Button>
           </Link>
         </nav>
 
         {/* Mobile toggle */}
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-foreground p-2"
-          aria-label="Menu">
-          
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center md:hidden">
+          <Toggles />
+          <button onClick={() => setOpen(!open)} className="text-foreground p-2" aria-label="Menu">
+            {open ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav */}
@@ -73,7 +97,7 @@ const Header = () => {
             <Link to="/contact" onClick={() => setOpen(false)}>
               <Button size="sm" className="bg-gradient-primary text-primary-foreground font-semibold w-full mt-2">
                 <Phone size={14} className="mr-1.5" />
-                Contact
+                {t("nav.contact")}
               </Button>
             </Link>
           </div>

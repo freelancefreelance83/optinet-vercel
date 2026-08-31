@@ -8,9 +8,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CalendarDays, User, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
-import { fr } from "date-fns/locale";
+import { fr, enUS } from "date-fns/locale";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const BlogPage = () => {
+  const { t, lang } = useLanguage();
   const { data: articles, isLoading } = useQuery({
     queryKey: ["blog_articles"],
     queryFn: async () => {
@@ -40,7 +42,7 @@ const BlogPage = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-extrabold mb-4"
           >
-            Nos Actualités
+            {t("blog.hero.title")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -48,7 +50,7 @@ const BlogPage = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="opacity-80 max-w-2xl mx-auto text-lg"
           >
-            Restez informé des dernières tendances en matière de réseau, sécurité et technologies.
+            {t("blog.hero.subtitle")}
           </motion.p>
         </div>
       </section>
@@ -97,12 +99,12 @@ const BlogPage = () => {
                           <span className="flex items-center gap-1">
                             <CalendarDays size={14} />{" "}
                             {format(new Date(a.published_at), "d MMMM yyyy", {
-                              locale: fr,
+                              locale: lang === "fr" ? fr : enUS,
                             })}
                           </span>
                         </div>
                         <span className="inline-flex items-center gap-1 text-secondary text-sm font-medium mt-4 group-hover:gap-2 transition-all">
-                          Lire l'article <ArrowRight size={14} />
+                          {t("blog.read")} <ArrowRight size={14} />
                         </span>
                       </div>
                     </div>

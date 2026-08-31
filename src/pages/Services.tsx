@@ -8,8 +8,10 @@ import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ServicesPage = () => {
+  const { t } = useLanguage();
   const { data: services, isLoading } = useQuery({
     queryKey: ["services"],
     queryFn: async () => {
@@ -39,7 +41,7 @@ const ServicesPage = () => {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-5xl font-extrabold mb-4"
           >
-            Nos Services
+            {t("home.services.title")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
@@ -47,7 +49,7 @@ const ServicesPage = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="opacity-80 max-w-2xl mx-auto text-lg"
           >
-            Des solutions complètes pour répondre à tous vos besoins en infrastructure réseau, sécurité et informatique.
+            {t("services.hero.subtitle")}
           </motion.p>
         </div>
       </section>
@@ -103,13 +105,13 @@ const ServicesPage = () => {
 
           {/* CTA */}
           <div className="text-center mt-16 p-10 bg-muted rounded-2xl">
-            <h2 className="text-2xl font-bold text-foreground mb-3">Besoin d'un service personnalisé ?</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-3">{t("services.cta.title")}</h2>
             <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-              Contactez notre équipe pour un devis gratuit adapté à vos besoins.
+              {t("services.cta.desc")}
             </p>
             <Link to="/contact">
               <Button size="lg" className="bg-gradient-primary text-primary-foreground font-semibold px-8 py-6">
-                Demander un devis
+                {t("services.cta.button")}
                 <ArrowRight className="ml-2" size={16} />
               </Button>
             </Link>
