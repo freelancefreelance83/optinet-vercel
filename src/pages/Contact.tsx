@@ -19,10 +19,15 @@ const ContactPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+    const name = form.name.trim();
+    const email = form.email.trim();
+    const message = form.message.trim();
+    const emailOk = /^[^@\s]+@[^@\s]+\.[A-Za-z]{2,}$/.test(email);
+    if (name.length < 2 || !emailOk || message.length < 10) {
       toast({ title: t("contact.error"), description: t("contact.error.required"), variant: "destructive" });
       return;
     }
+
     setSubmitting(true);
     const { error } = await supabase.from("contacts").insert({
       name: form.name.trim(),
