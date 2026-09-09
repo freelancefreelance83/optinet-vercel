@@ -25,6 +25,7 @@ const App = () => (
     <HelmetProvider>
       <ThemeProvider>
       <LanguageProvider>
+      <AuthProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -36,10 +37,20 @@ const App = () => (
             <Route path="/blog/:id" element={<BlogArticlePage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route
+              path="/admin"
+              element={
+                <RequireAdmin>
+                  <AdminPage />
+                </RequireAdmin>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
+      </AuthProvider>
       </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>
