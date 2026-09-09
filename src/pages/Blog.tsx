@@ -5,6 +5,7 @@ import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import SectionTitle from "@/components/SectionTitle";
 import { Skeleton } from "@/components/ui/skeleton";
+import SiteImage from "@/components/SiteImage";
 import { CalendarDays, User, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -76,8 +77,8 @@ const BlogPage = () => {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-5">
                       <div className="sm:col-span-2 aspect-video sm:aspect-auto overflow-hidden">
-                        <img
-                          src={a.image_url || ""}
+                        <SiteImage
+                          source={a.image_url}
                           alt={a.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                           loading="lazy"

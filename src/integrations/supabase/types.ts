@@ -104,6 +104,33 @@ export type Database = {
         }
         Relationships: []
       }
+      site_images: {
+        Row: {
+          alt: string | null
+          created_at: string
+          id: string
+          key: string
+          storage_path: string
+          updated_at: string
+        }
+        Insert: {
+          alt?: string | null
+          created_at?: string
+          id?: string
+          key: string
+          storage_path: string
+          updated_at?: string
+        }
+        Update: {
+          alt?: string | null
+          created_at?: string
+          id?: string
+          key?: string
+          storage_path?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       testimonials: {
         Row: {
           avatar_url: string | null

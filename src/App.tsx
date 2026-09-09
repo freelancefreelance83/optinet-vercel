@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { AuthProvider } from "@/contexts/AuthContext";
+import RequireAdmin from "@/components/RequireAdmin";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,6 +14,8 @@ import BlogPage from "./pages/Blog";
 import AboutPage from "./pages/About";
 import ContactPage from "./pages/Contact";
 import BlogArticlePage from "./pages/BlogArticle";
+import AuthPage from "./pages/Auth";
+import AdminPage from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +25,7 @@ const App = () => (
     <HelmetProvider>
       <ThemeProvider>
       <LanguageProvider>
+      <AuthProvider>
       <TooltipProvider>
         <Toaster />
         <Sonner />
@@ -32,10 +37,20 @@ const App = () => (
             <Route path="/blog/:id" element={<BlogArticlePage />} />
             <Route path="/a-propos" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            <Route
+              path="/admin"
+              element={
+                <RequireAdmin>
+                  <AdminPage />
+                </RequireAdmin>
+              }
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </TooltipProvider>
+      </AuthProvider>
       </LanguageProvider>
       </ThemeProvider>
     </HelmetProvider>

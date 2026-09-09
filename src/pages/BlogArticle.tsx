@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import SEO from "@/components/SEO";
 import { Skeleton } from "@/components/ui/skeleton";
+import SiteImage from "@/components/SiteImage";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { format } from "date-fns";
@@ -90,8 +91,8 @@ const BlogArticlePage = () => {
                 </span>
               </div>
               {article.image_url && (
-                <img
-                  src={article.image_url}
+                <SiteImage
+                  source={article.image_url}
                   alt={article.title}
                   className="w-full rounded-xl mb-8 object-cover max-h-[450px]"
                   width={800}
